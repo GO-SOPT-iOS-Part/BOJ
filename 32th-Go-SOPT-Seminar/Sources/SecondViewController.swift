@@ -44,7 +44,6 @@ final class SecondViewController_1st_Seminar: UIViewController {
     func dataBind() {
         nameLabel.text = name
     }
-    
 }
 
 //MARK: - Extensions
@@ -65,7 +64,6 @@ private extension SecondViewController_1st_Seminar {
         
         NSLayoutConstraint.activate([nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      nameLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
-    
         
         NSLayoutConstraint.activate([backButton.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
                                      backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
@@ -73,7 +71,7 @@ private extension SecondViewController_1st_Seminar {
                                      backButton.heightAnchor.constraint(equalToConstant: 48)])
     }
     
-//MARK: - objc
+    //MARK: - objc
     
     @objc
     func backButtonTapped() {

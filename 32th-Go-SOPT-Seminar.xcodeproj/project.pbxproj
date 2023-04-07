@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37943BD129DFF7FC008D6C28 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37943BD029DFF7FC008D6C28 /* UIView+.swift */; };
+		37943BD529DFF8E6008D6C28 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37943BD429DFF8E6008D6C28 /* UITextField+.swift */; };
 		37EC661F29D72D850049DEE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EC661E29D72D850049DEE3 /* AppDelegate.swift */; };
 		37EC662129D72D850049DEE3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EC662029D72D850049DEE3 /* SceneDelegate.swift */; };
 		37EC662329D72D850049DEE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EC662229D72D850049DEE3 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37943BD029DFF7FC008D6C28 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		37943BD429DFF8E6008D6C28 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		37EC661B29D72D850049DEE3 /* 32th-Go-SOPT-Seminar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "32th-Go-SOPT-Seminar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EC661E29D72D850049DEE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37EC662029D72D850049DEE3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37943BD229DFF818008D6C28 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				37943BD729DFF99C008D6C28 /* Support */,
+				37943BD329DFF823008D6C28 /* Extension */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		37943BD329DFF823008D6C28 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				37943BD029DFF7FC008D6C28 /* UIView+.swift */,
+				37943BD429DFF8E6008D6C28 /* UITextField+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		37943BD629DFF951008D6C28 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				37EC662229D72D850049DEE3 /* ViewController.swift */,
+				37EC663229D72F2B0049DEE3 /* FirstViewController.swift */,
+				37EC663429D732E00049DEE3 /* SecondViewController.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		37943BD729DFF99C008D6C28 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				37EC661E29D72D850049DEE3 /* AppDelegate.swift */,
+				37EC662029D72D850049DEE3 /* SceneDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		37EC661229D72D850049DEE3 = {
 			isa = PBXGroup;
 			children = (
@@ -60,11 +101,8 @@
 		37EC661D29D72D850049DEE3 /* 32th-Go-SOPT-Seminar */ = {
 			isa = PBXGroup;
 			children = (
-				37EC661E29D72D850049DEE3 /* AppDelegate.swift */,
-				37EC662029D72D850049DEE3 /* SceneDelegate.swift */,
-				37EC662229D72D850049DEE3 /* ViewController.swift */,
-				37EC663229D72F2B0049DEE3 /* FirstViewController.swift */,
-				37EC663429D732E00049DEE3 /* SecondViewController.swift */,
+				37943BD229DFF818008D6C28 /* Resources */,
+				37943BD629DFF951008D6C28 /* Sources */,
 				37EC662429D72D850049DEE3 /* Main.storyboard */,
 				37EC662729D72D860049DEE3 /* Assets.xcassets */,
 				37EC662929D72D860049DEE3 /* LaunchScreen.storyboard */,
@@ -146,9 +184,11 @@
 			files = (
 				37EC662329D72D850049DEE3 /* ViewController.swift in Sources */,
 				37EC661F29D72D850049DEE3 /* AppDelegate.swift in Sources */,
+				37943BD529DFF8E6008D6C28 /* UITextField+.swift in Sources */,
 				37EC662129D72D850049DEE3 /* SceneDelegate.swift in Sources */,
 				37EC663529D732E00049DEE3 /* SecondViewController.swift in Sources */,
 				37EC663329D72F2B0049DEE3 /* FirstViewController.swift in Sources */,
+				37943BD129DFF7FC008D6C28 /* UIView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,9 +61,8 @@ final class FirstViewController: UIViewController {
         setLayout()
 
     }
-
-
 }
+
 //MARK: - Extensions
 
 private extension FirstViewController {
@@ -100,6 +99,7 @@ private extension FirstViewController {
                                      pushButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
                                      pushButton.heightAnchor.constraint(equalToConstant: 48)])
     }
+    
  //MARK: - Action Helpers
     
     func presentToSecondViewController() {
@@ -114,8 +114,8 @@ private extension FirstViewController {
     
     func pushToSecondViewController() {
         
-        guard let name = nameTextField.text else { return }
         let secondViewController = SecondViewController_1st_Seminar()
+        guard let name = nameTextField.text else { return }
         secondViewController.name = name
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
@@ -124,11 +124,13 @@ private extension FirstViewController {
     
     @objc
     func presentButtonTapped() {
+        
         presentToSecondViewController()
     }
     
     @objc
     func pushButtonTapped() {
+        
         pushToSecondViewController()
     }
 }
