@@ -9,6 +9,8 @@ import UIKit
 
 final class SecondViewController_1st_Seminar: UIViewController {
     
+    //MARK: - Variables
+    
     var name: String?
     
     private let nameLabel: UILabel = {
@@ -27,6 +29,8 @@ final class SecondViewController_1st_Seminar: UIViewController {
         return button
     }()
     
+    //MARK: - Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,11 +39,15 @@ final class SecondViewController_1st_Seminar: UIViewController {
         dataBind()
     }
     
+    //MARK: - Action Helpers
+    
     func dataBind() {
-        nameLabel.text = "제 이름은요"
+        nameLabel.text = name
     }
     
 }
+
+//MARK: - Extensions
 
 private extension SecondViewController_1st_Seminar {
     
@@ -64,6 +72,8 @@ private extension SecondViewController_1st_Seminar {
                                      backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
                                      backButton.heightAnchor.constraint(equalToConstant: 48)])
     }
+    
+//MARK: - objc
     
     @objc
     func backButtonTapped() {

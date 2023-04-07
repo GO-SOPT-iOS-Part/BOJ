@@ -9,11 +9,13 @@ import UIKit
 
 final class FirstViewController: UIViewController {
     
+    // MARK: - UI Compoents
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "이름이 무엇인가요?"
-        label.font = .systemFont(ofSize: 16)
-        label.textColor = .blue
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textColor = .systemPurple
         label.textAlignment = .center
         return label
     }()
@@ -22,8 +24,9 @@ final class FirstViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Present", for: .normal)
         button.backgroundColor = .systemPurple
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(.systemGreen, for: .normal)
         button.addTarget(self, action: #selector(presentButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 5
         return button
     }()
     
@@ -31,8 +34,9 @@ final class FirstViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Push", for: .normal)
         button.backgroundColor = .systemGreen
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(.systemPurple, for: .normal)
         button.addTarget(self, action: #selector(pushButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 5
         return button
     }()
     
@@ -42,8 +46,13 @@ final class FirstViewController: UIViewController {
         textField.clearButtonMode = .whileEditing
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.borderWidth = 1
+        textField.clearButtonMode = .whileEditing
+        textField.layer.cornerRadius = 5
+        textField.addLeftPadding()
         return textField
     }()
+    
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +64,7 @@ final class FirstViewController: UIViewController {
 
 
 }
+//MARK: - Extensions
 
 private extension FirstViewController {
     
@@ -90,10 +100,13 @@ private extension FirstViewController {
                                      pushButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
                                      pushButton.heightAnchor.constraint(equalToConstant: 48)])
     }
+ //MARK: - Action Helpers
     
     func presentToSecondViewController() {
         
         let secondViewController = SecondViewController_1st_Seminar()
+        guard let name = nameTextField.text else { return }
+        secondViewController.name = name
         secondViewController.modalPresentationStyle = .automatic
         secondViewController.modalTransitionStyle = .coverVertical
         self.present(secondViewController, animated: true)
@@ -106,6 +119,8 @@ private extension FirstViewController {
         secondViewController.name = name
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
+    
+   //MARK: - objc
     
     @objc
     func presentButtonTapped() {
