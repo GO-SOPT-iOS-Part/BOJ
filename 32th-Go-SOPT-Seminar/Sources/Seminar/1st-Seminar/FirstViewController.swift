@@ -19,7 +19,17 @@ final class FirstViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-
+    
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "이름을 입력해주세요"
+        label.font = .systemFont(ofSize: 16)
+        label.textColor = .systemRed
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var presentButton: UIButton = {
         let button = UIButton()
         button.setTitle("Present", for: .normal)
@@ -59,7 +69,7 @@ final class FirstViewController: UIViewController {
         
         style()
         setLayout()
-
+        
     }
 }
 
@@ -75,7 +85,7 @@ private extension FirstViewController {
     func setLayout() {
         
         [nameLabel, nameTextField,
-         presentButton, pushButton].forEach {
+         presentButton, pushButton, errorLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
@@ -98,9 +108,13 @@ private extension FirstViewController {
                                      pushButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
                                      pushButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
                                      pushButton.heightAnchor.constraint(equalToConstant: 48)])
+        
+        NSLayoutConstraint.activate([errorLabel.topAnchor.constraint(equalTo: pushButton.bottomAnchor, constant: 30),
+                                     errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+                                     errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)])
     }
     
- //MARK: - Action Helpers
+    //MARK: - Action Helpers
     
     func presentToSecondViewController() {
         
@@ -120,7 +134,7 @@ private extension FirstViewController {
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
     
-   //MARK: - objc
+    //MARK: - objc
     
     @objc
     func presentButtonTapped() {
@@ -132,5 +146,17 @@ private extension FirstViewController {
     func pushButtonTapped() {
         
         pushToSecondViewController()
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension FirstViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            errorLabel.isHidden = false
+            pushButton.isEnabled = false
+        } else {
+            errorLabel.isHidden = true
+        }
     }
 }
