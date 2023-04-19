@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let injectViewController = Inject.ViewControllerHost(AutoLayoutPracticeViewController())
+        let injectViewController = Inject.ViewControllerHost(SignInViewController())
         self.window = UIWindow(windowScene: windowScene)
         self.window?.rootViewController = injectViewController
         self.window?.makeKeyAndVisible()
