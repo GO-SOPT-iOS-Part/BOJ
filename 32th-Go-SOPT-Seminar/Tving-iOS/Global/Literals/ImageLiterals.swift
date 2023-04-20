@@ -15,8 +15,7 @@ struct ImageLiterals {
     
     struct Icn {
         static let back = UIImage(named: "btn_before")
-        static let hidden = UIImage(named: "security-on")
-        static let securityOn = UIImage(named: "security-On")
+        static let securityOn = UIImage(named: "security-on")
         static let securityOff = UIImage(named: "security-off")
         static let clear = UIImage(named: "x-circle")
     }
