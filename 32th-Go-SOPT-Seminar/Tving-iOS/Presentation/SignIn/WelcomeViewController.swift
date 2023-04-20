@@ -14,17 +14,23 @@ final class WelcomeViewController: UIViewController {
     
     private lazy var toMainButton: CustomButton = {
         let button = CustomButton(title: "메인으로", radius: 3)
+        button.addTarget(self, action: #selector(toMainButtonTapped), for: .touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUI()
         setlayout()
     }
 }
 
 extension WelcomeViewController {
+    
+    private func setUI() {
+        view.backgroundColor = .b1
+    }
     
     private func setlayout() {
         view.addSubviews(tvingImage, welcomeLabel, toMainButton)
@@ -44,5 +50,14 @@ extension WelcomeViewController {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(convertByWidthRatio(335))
         }
+    }
+    
+    private func dismiss() {
+        self.dismiss(animated: true)
+    }
+    
+    @objc
+    func toMainButtonTapped() {
+        dismiss()
     }
 }

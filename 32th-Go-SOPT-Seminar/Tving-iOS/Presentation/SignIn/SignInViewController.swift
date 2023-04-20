@@ -85,7 +85,7 @@ final class SignInViewController: UIViewController {
         button.titleLabel?.font = .b1
         button.setTitle("닉네임 만들러가기", for: .normal)
         button.setUnderline()
-        button.addTarget(self, action: #selector(showBottomSheet), for: .touchUpInside)
+        button.addTarget(self, action: #selector(nicknameButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -186,37 +186,78 @@ extension SignInViewController {
         }
     }
     
-    //MARK: - Objc
-
-    @objc private func showBottomSheet() {
+    //MARK: - Config
+    
+    private func setConfigDelegate() {
+        idTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    private func config() {
+        passwordTextField.rightView = passwordIconStackView
+        passwordTextField.rightViewMode = .always
+    }
+    
+    //MARK: - Action
+    
+    private func pushToWelcomeViewController() {
+        
+        let welcomeViewController = WelcomeViewController()
+        welcomeViewController.modalPresentationStyle = .fullScreen
+        self.present(welcomeViewController, animated: true)
+        
+    }
+    
+    private func showBottomSheet() {
         let bottomSheetViewController = NicknameBottomSheetViewController()
         bottomSheetViewController.modalPresentationStyle = .custom
         bottomSheetViewController.transitioningDelegate = self
         present(bottomSheetViewController, animated: true, completion: nil)
     }
+    
+    func setTextFieldBorderColor(_ textField: UITextField) {
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.g2.cgColor
+    }
+    
+    //MARK: - @Objc
+    
+    @objc
+    private func loginButtonTapped() {
+        pushToWelcomeViewController()
+    }
+    
+    @objc
+    private func nicknameButtonTapped() {
+        showBottomSheet()
+    }
 }
 
 extension SignInViewController: UITextFieldDelegate {
     
-//    func textFieldDidChangeSelection(_ textField: UITextField) {
-//        idTextField.layer.borderWidth = 1
-//        idTextField.layer.borderColor = UIColor.g2.cgColor
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        <#code#>
-//    }
-
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//
-//    }
-    
-}
-
-extension SignInViewController: UIViewControllerTransitioningDelegate {
-    
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return CustomPresentationController(presentedViewController: presented, presenting: presenting)
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
     }
-}
-
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if idTextField.isEditing {
+            setTextFieldBorderColor(idTextField)
+        } else {
+            setTextFieldBorderColor(passwordTextField)
+        }
+    }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            
+            textField.layer.borderWidth = 0
+        }
+        
+    }
+    
+    extension SignInViewController: UIViewControllerTransitioningDelegate {
+        
+        func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+            return CustomPresentationController(presentedViewController: presented, presenting: presenting)
+        }
+    }
+    
