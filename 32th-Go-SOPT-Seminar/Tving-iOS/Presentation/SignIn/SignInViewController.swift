@@ -14,7 +14,7 @@ final class SignInViewController: UIViewController {
         button.setImage(UIImage(named: "btn_before"), for: .normal)
         return button
     }()
-
+    
     private let loginLabel: UILabel = {
         let label = UILabel()
         label.font = .h2
@@ -31,7 +31,9 @@ final class SignInViewController: UIViewController {
         textField.setPlaceholderColor(.g2)
         textField.font = .h3
         textField.textColor = .g2
+        textField.layer.borderWidth = 1
         textField.placeholder = "아이디"
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
     
@@ -43,14 +45,14 @@ final class SignInViewController: UIViewController {
         textField.setPlaceholderColor(.g2)
         textField.font = .h3
         textField.textColor = .g2
+        textField.layer.borderWidth = 1
         textField.placeholder = "비밀번호"
-        
         return textField
     }()
     
     private lazy var signInButton: CustomButton = {
         let button = CustomButton(title: "로그인하기", radius: 3)
-//        button.addTarget(<#T##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -103,13 +105,38 @@ final class SignInViewController: UIViewController {
         return view
     }()
     
+    private var passwordIconStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 16
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 14)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
+    }()
+    
+    private lazy var customClearButton: UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiterals.Icn.clear, for: .normal)
+        return button
+    }()
+    
+    private lazy var securityButton: UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiterals.Icn.securityOn, for: .normal)
+        return button
+    }()
+    
     //MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-            setUI()
-            setLayout()
+        
+        setUI()
+        setLayout()
+        setConfigDelegate()
+        setUIPasswordTextField()
     }
 }
 
@@ -134,6 +161,8 @@ extension SignInViewController {
         )
         
         findStackView.addArrangedSubviews(findIdButton, separationBar, findPasswordButton)
+        
+        passwordIconStackView.addArrangedSubviews(customClearButton, securityButton)
         
         backButton.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(25)
@@ -193,7 +222,7 @@ extension SignInViewController {
         passwordTextField.delegate = self
     }
     
-    private func config() {
+    private func setUIPasswordTextField() {
         passwordTextField.rightView = passwordIconStackView
         passwordTextField.rightViewMode = .always
     }
