@@ -1,17 +1,13 @@
 //
-//  SecondViewController_DelegatePattern.swift
+//  SecondViewController_NotificationCenter.swift
 //  32th-Go-SOPT-Seminar
 //
-//  Created by Joon Baek on 2023/04/08.
+//  Created by Joon Baek on 2023/04/21.
 //
 
 import UIKit
 
-protocol DataBindProtocol: AnyObject {
-    func dataBind(text: String)
-}
-
-final class SecondViewController_DelegatePattern: UIViewController {
+final class SecondViewController_NotificationCenter: UIViewController {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -42,8 +38,6 @@ final class SecondViewController_DelegatePattern: UIViewController {
         return button
     }()
     
-    weak var delegate: DataBindProtocol?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +46,7 @@ final class SecondViewController_DelegatePattern: UIViewController {
     }
 }
 
-private extension SecondViewController_DelegatePattern {
+private extension SecondViewController_NotificationCenter {
     
     func style() {
         
@@ -82,11 +76,12 @@ private extension SecondViewController_DelegatePattern {
     }
     
     @objc
-    func popSecondViewController() {
+    private func popSecondViewController() {
         
-        if let text = nameTextField.text {
-            delegate?.dataBind(text: text)
-        }
+        guard let text = nameTextField.text else { return }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("name"),
+                                        object: text)
         
         self.navigationController?.popViewController(animated: true)
     }

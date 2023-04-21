@@ -56,8 +56,19 @@ extension WelcomeViewController {
         self.dismiss(animated: true)
     }
     
+    
+    //MARK: - Objc
+    
     @objc
     func toMainButtonTapped() {
         dismiss()
+    }
+    
+    @objc
+    func nickNameReceived(notification: NSNotification) {
+        
+        guard let text = notification.object as? String else { return }
+        
+        welcomeLabel.text = text
     }
 }

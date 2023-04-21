@@ -77,4 +77,8 @@ extension NicknameBottomSheetViewController {
             $0.centerX.leading.height.equalTo(nickNameTextField)
         }
     }
+    
+    private func dissmissToSignInViewController() {
+        self.dismiss(animated: true)
+    }
 }
